@@ -54,16 +54,19 @@
 
 ### Functionality 
 
-- I will need to be able to import through axios API and continue downscreen and load in rows 
-- I will need to be able to load in an image to project page 
-- I would like to change header size based on viewing window 
-- I would like to import font from Google Fonts 
-- I will need to import prices, names and descriptions 
-- I will need to pass components up and pair them together 
+- I need to make div that will hold search bar 
+- I will make the div that holds the text component so that 
+I can easily add text 
+- I will make the Circles to hold over and the divs that contain info
+- I will make the Buttons to transition lists 
+- I will make the delete button appear 
+- I will add the array and create a way to generate list items and 
+  components from this 
+- I will save this to local storage so that I can call load in and adjust values 
+- Need to call render whenever any mutation to list of objects is changed 
+  
 
 ### Next steps and plans 
 
-- Need to run createApp (Done) and get axios (Done), and bootstrap (Done) 
-- Need to create atoms, molecules, components folders 
-- Need to get first element added onto page 
-- Need to import some data from axios 
+- Need to import Bootstrap 
+- Need to make components 
