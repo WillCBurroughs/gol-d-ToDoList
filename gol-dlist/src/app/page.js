@@ -1,19 +1,19 @@
+"use client"
 import Image from 'next/image'
 import styles from './page.module.css'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Makep from './components/atoms/Makep'
+import Makeh from './components/atoms/Makeh'
+import Input from './components/atoms/Input'
 
 export default function Home() {
   return (
     <main className={styles.main}>
-        <body className={styles.myBody}>
+      
+        <Makep className="" textToPass="Hello there" />
+        <Makeh className="" textToPass="Hello there" /> 
+        <Input passclasses="your-class-name" textToPass="Enter something" />
 
-          <Makep
-            className = ""
-            textToPass = "Hello there"
-          />
-
-        </body>
     </main>
   )
 }
