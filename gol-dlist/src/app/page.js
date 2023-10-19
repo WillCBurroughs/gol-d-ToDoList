@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 import React, {useState, useEffect} from 'react'
-import Makep from './components/atoms/makep'
+import Makep from './components/atoms/Makep'
 import Makeh from './components/atoms/Makeh'
 import Input from './components/atoms/Input'
 
