@@ -7,13 +7,25 @@ import Makeh from './components/atoms/Makeh'
 import Input from './components/atoms/Input'
 
 export default function Home() {
+  const [headers, setHeaders] = useState(() => {
+    const storedHeaders = localStorage.getItem('headers');
+    return storedHeaders ? JSON.parse(storedHeaders) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('headers', JSON.stringify(headers));
+  }, [headers]);
+
   return (
     <main className={styles.main}>
-      
-        <Makep className="" textToPass="Hello there" />
-        <Makeh className="" textToPass="Hello there" /> 
-        <Input passclasses="your-class-name" textToPass="Enter something" />
-
+      <div className="centered-container">
+        <Input passclasses="customizeInput" textToPass="Enter something" headers={headers} setHeaders={setHeaders} />
+      </div>
     </main>
-  )
+  );
 }
+
+
+
+
+
