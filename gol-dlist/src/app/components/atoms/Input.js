@@ -1,21 +1,36 @@
-// components/Input.js
-import React from 'react';
-
+import React, { useState } from 'react';
 
 export default function Input(props) {
+  let [inputValue, setInputValue] = useState('');
+  let [headers, setHeaders] = useState([]);
 
-    let change = e => {
-        console.log(e.target.value)
-    }
+  let handleChange = (e) => {
+    setInputValue(e.target.value);
+  };
 
-    let submit = e => {
-        valueArray 
+  let handleKeyPress = (e) => {
+    if (e.key === 'Enter' && inputValue.trim() !== '') {
+      setHeaders([...headers, inputValue]);
+      setInputValue('');
     }
+  };
 
   return (
     <div>
-        <input onChange = {change} className={props.passclasses} placeholder={props.textToPass} />
+      <input
+        onKeyDown={handleKeyPress}
+        onChange={handleChange}
+        className={props.passclasses}
+        placeholder={props.textToPass}
+        value={inputValue}
+      />
+      <ul>
+        {headers.map((header, index) => (
+          <li key={index}>
+            <h1>{header}</h1>
+          </li>
+        ))}
+      </ul>
     </div>
   );
-
 }

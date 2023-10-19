@@ -14,7 +14,6 @@ export default function Home() {
         <Makeh className="" textToPass="Hello there" /> 
         <Input passclasses="your-class-name" textToPass="Enter something" />
 
-      
     </main>
   )
 }
