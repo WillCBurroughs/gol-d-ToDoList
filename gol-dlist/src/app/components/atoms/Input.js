@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function Input(props) {
   let [inputValue, setInputValue] = useState('');
-  let [headers, setHeaders] = useState([]);
+  let [headers, setHeaders] = useState(() => {
+    // Load headers from localStorage if available, or use an empty array
+    const storedHeaders = localStorage.getItem('headers');
+    return storedHeaders ? JSON.parse(storedHeaders) : [];
+  });
+
+  useEffect(() => {
+    // Save headers to localStorage whenever it changes
+    localStorage.setItem('headers', JSON.stringify(headers));
+  }, [headers]);
 
   let handleChange = (e) => {
     setInputValue(e.target.value);
@@ -13,6 +22,13 @@ export default function Input(props) {
       setHeaders([...headers, inputValue]);
       setInputValue('');
     }
+  };
+
+  let deleteHeader = (index) => {
+    // Create a new array without the header at the given index
+    const updatedHeaders = [...headers];
+    updatedHeaders.splice(index, 1);
+    setHeaders(updatedHeaders);
   };
 
   return (
@@ -27,7 +43,7 @@ export default function Input(props) {
       <ul>
         {headers.map((header, index) => (
           <li key={index}>
-            <h1>{header}</h1>
+            <h1 onClick={() => deleteHeader(index)}>{header}</h1>
           </li>
         ))}
       </ul>
