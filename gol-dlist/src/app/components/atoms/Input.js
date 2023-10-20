@@ -10,7 +10,7 @@ export default function Input(props) {
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && inputValue.trim() !== '') {
-      setHeaders([...headers, inputValue]);
+      setHeaders([...headers, { text: inputValue, isStriked: false }]);
       setInputValue('');
     }
   };
@@ -19,6 +19,24 @@ export default function Input(props) {
     const updatedHeaders = [...headers];
     updatedHeaders.splice(index, 1);
     setHeaders(updatedHeaders);
+  };
+
+  const toggleStrikethrough = (index) => {
+    const updatedHeaders = [...headers];
+    updatedHeaders[index].isStriked = !updatedHeaders[index].isStriked;
+    setHeaders(updatedHeaders);
+  };
+
+  const handleDivClick = (index) => {
+    toggleStrikethrough(index);
+  };
+
+  const handleDeleteClick = (index, e) => {
+    // Prevent the click event from propagating to the parent div
+    e.stopPropagation();
+
+    // Delete the item
+    deleteHeader(index);
   };
 
   return (
@@ -33,10 +51,19 @@ export default function Input(props) {
       <ul>
         {headers.map((header, index) => (
           <li key={index}>
-            <h1 onClick={() => deleteHeader(index)}>{header}</h1>
+            <div
+              className={`itemDiv ${header.isStriked ? 'strikethrough' : ''}`}
+              onClick={() => handleDivClick(index)}
+            >
+              <h1>{header.text}</h1>
+              <button onClick={(e) => handleDeleteClick(index, e)}>Delete</button>
+            </div>
           </li>
         ))}
       </ul>
+      <div>
+        <p>Total Headers Created: {headers.length}</p>
+      </div>
     </div>
   );
 }
