@@ -32,11 +32,13 @@ export default function Input(props) {
   };
 
   const handleDeleteClick = (index, e) => {
-    // Prevent the click event from propagating to the parent div
     e.stopPropagation();
-
-    // Delete the item
     deleteHeader(index);
+  };
+
+  const handleDeleteAllStriked = () => {
+    const updatedHeaders = headers.filter((header) => !header.isStriked);
+    setHeaders(updatedHeaders);
   };
 
   return (
@@ -63,6 +65,7 @@ export default function Input(props) {
       </ul>
       <div>
         <p>Total Headers Created: {headers.length}</p>
+        <button onClick={handleDeleteAllStriked}>Delete All Striked</button>
       </div>
     </div>
   );
